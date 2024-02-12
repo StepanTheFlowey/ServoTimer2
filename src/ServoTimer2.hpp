@@ -1,5 +1,5 @@
 /*
-  ServoTimer2.h - Interrupt driven Servo library for Arduino using Timer2- Version 0.1
+  ServoTimer2.hpp - Interrupt driven Servo library for Arduino using Timer2 - Version 0.1
   Copyright (c) 2008 Michael Margolis.  All right reserved.
 
   This library is free software; you can redistribute it and/or
@@ -18,8 +18,7 @@
 
   This library uses Timer2 to drive up to 8 servos using interrupts so no refresh activity is required from within the sketch.
   The usage and method naming is similar to the Arduino software servo library http://www.arduino.cc/playground/ComponentLib/Servo
-  except that pulse widths can be in microseconds or degrees.
-  write() treats parameters of 180 or less as degrees, otherwise values are milliseconds.
+  except that pulse widths can only be in microseconds.
 
   A servo is activated by creating an instance of the Servo class passing the desired pin to the attach() method.
   The servo is pulsed in the background to the value most recently written using the write() method
@@ -32,16 +31,16 @@
 
 #include <Arduino.h>
 
-#define MIN_PULSE_WIDTH       500  //the shortest pulse sent to a servo  
-#define MAX_PULSE_WIDTH      2000  //the longest pulse sent to a servo 
+#define MIN_PULSE_WIDTH       500  //the shortest pulse sent to a servo
+#define MAX_PULSE_WIDTH      2000  //the longest pulse sent to a servo
 #define DEFAULT_PULSE_WIDTH  1500  //default pulse width when servo is attached
-#define FRAME_SYNC_PERIOD   20000  //total frame duration in microseconds 
-#define NBR_CHANNELS            8  //the maximum number of channels, don't change this 
+#define FRAME_SYNC_PERIOD   20000  //total frame duration in microseconds
+#define NBR_CHANNELS            8  //the maximum number of channels, don't change this
 
 struct servo_t {
   struct {
-    uint8_t nbr : 7;       //a pin number from 0 to 31
-    uint8_t isActive : 1;  //false if this channel not enabled, pin only pulsed if true 
+    uint8_t nbr : 7;       //a pin number from 0 to 127
+    uint8_t isActive : 1;  //false if this channel not enabled, pin only pulsed if true
   } pin;
 
   uint8_t counter;
@@ -56,16 +55,16 @@ public:
   ~ServoTimer2() = default;
 
   //attach the given pin to the next free channel, sets pinMode, returns channel number or 0 if failure
-  //the attached servo is pulsed with the current pulse width value, (see the write method) 
+  //the attached servo is pulsed with the current pulse width value, (see the write method)
   uint8_t attach(const uint8_t pin);
   void detach();
 
   //returns/stores current pulse width in microseconds for this servo
-  uint16_t read() const;
-  void write(const uint16_t );
+  uint16_t readMicroseconds() const;
+  void writeMicroseconds(const uint16_t );
 
-  //return true if this servo is attached 
-  bool attached();
+  //return true if this servo is attached
+  bool attached() const;
 protected:
 
   uint8_t chanIndex = 0;  // index into the channel data for this servo

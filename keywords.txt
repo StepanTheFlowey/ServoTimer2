@@ -1,0 +1,9 @@
+#Classes
+ServoTimer2	KEYWORD1
+
+#Methods
+attach	KEYWORD2
+detach	KEYWORD2
+write	KEYWORD2
+read	KEYWORD2
+attached	KEYWORD2
