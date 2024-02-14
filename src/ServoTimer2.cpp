@@ -70,10 +70,9 @@ static void initISR() {
   //setup timer 2
   TIMSK2 = 0;          //disable interrupts
   TCCR2A = 0;          //normal counting mode
-  TCCR2B = _BV(CS21);  //set prescaler of 8
+  TCCR2B = bit(CS21);  //set prescaler of 8
   TCNT2 = 0;           //clear the timer2 count
-  TIFR2 = _BV(TOV2);   //clear pending interrupts
-  TIMSK2 = _BV(TOIE2); //enable the overflow interrupt
+  TIMSK2 = bit(TOIE2); //enable the overflow interrupt
 
   isStarted = true;    //flag to indicate this initialisation code has been executed
 }
