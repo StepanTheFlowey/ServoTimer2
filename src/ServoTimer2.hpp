@@ -31,7 +31,7 @@
 
 #include <Arduino.h>
 
-#define NBR_CHANNELS            8  //the maximum number of channels
+#define NBR_CHANNELS            4  //the maximum number of channels
 #define MIN_PULSE_WIDTH       500  //the shortest pulse sent to a servo
 #define MAX_PULSE_WIDTH      2000  //the longest pulse sent to a servo
 #define DEFAULT_PULSE_WIDTH  1500  //default pulse width when servo is attached
