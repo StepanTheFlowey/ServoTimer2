@@ -1,5 +1,5 @@
 /*
-  ServoTimer2.hpp - Interrupt driven Servo library for Arduino using Timer2 - Version 0.1
+  ServoTimer2.hpp - Interrupt driven Servo library for Arduino using Timer2 - Version 0.2
   Copyright (c) 2008 Michael Margolis.  All right reserved.
 
   This library is free software; you can redistribute it and/or
@@ -60,7 +60,7 @@ public:
 
   //returns/stores current pulse width in microseconds for this servo
   uint16_t readMicroseconds() const;
-  void writeMicroseconds(const uint16_t );
+  void writeMicroseconds(const uint16_t);
 
   //return true if this servo is attached
   bool attached() const;
